@@ -70,6 +70,12 @@
             text-decoration: line-through;
             color: #888;
         }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -103,10 +109,18 @@
             <input type="checkbox" id="step5" onchange="updateProgress()">
             <label for="label5" id="label5">Korištenje odvojenog i sigurnog e-maila samo za kripto račune.</label>
         </div>
+        <div class="item">
+            <input type="checkbox" id="step6" onchange="updateProgress()">
+            <label for="label6" id="label6">Provjera URL-ova i izbjegavanje sponzoriranih lažnih linkova (phishing) na tražilicama.</label>
+        </div>
     </div>
 
+    <footer>
+        <p>Kreirano uz pomoć otvorenog koda • Podržava MojKripto</p>
+    </footer>
+
     <script>
-        const totalSteps = 5;
+        const totalSteps = 6;
 
         function updateProgress() {
             let checkedCount = 0;
