@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Security Checklist</title>
+    <title>Crypto Security Checklist - MojKripto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,7 +20,26 @@
         .subtitle {
             text-align: center;
             color: #666;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+        }
+        .progress-container {
+            background: #e2e8f0;
+            border-radius: 10px;
+            height: 20px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: #27ae60;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .progress-text {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #2c3e50;
         }
         .checklist {
             background: #ffffff;
@@ -47,6 +66,10 @@
             font-size: 16px;
             cursor: pointer;
         }
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
     </style>
 </head>
 <body>
@@ -54,28 +77,69 @@
     <h1>Crypto Security Checklist</h1>
     <p class="subtitle">Osnovna provjera sigurnosti za svakog kripto korisnika</p>
 
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="progress-text" id="progressText">Napredak: 0%</div>
+
     <div class="checklist">
         <div class="item">
-            <input type="checkbox" id="step1">
-            <label for="step1">Hardware novčanik je kupljen isključivo od službenog proizvođača.</label>
+            <input type="checkbox" id="step1" onchange="updateProgress()">
+            <label for="step1" id="label1">Hardware novčanik je kupljen isključivo od službenog proizvođača.</label>
         </div>
         <div class="item">
-            <input type="checkbox" id="step2">
-            <label for="step2">Seed fraza (24 riječi) zapisana je na papir/metal, nikada u digitalnom obliku.</label>
+            <input type="checkbox" id="step2" onchange="updateProgress()">
+            <label for="label2" id="label2">Seed fraza (24 riječi) zapisana je na papir/metal, nikada u digitalnom obliku.</label>
         </div>
         <div class="item">
-            <input type="checkbox" id="step3">
-            <label for="step3">Uključena je 2FA autentifikacija (Google Authenticator/YubiKey) na svim mjenjačnicama.</label>
+            <input type="checkbox" id="step3" onchange="updateProgress()">
+            <label for="label3" id="label3">Uključena je 2FA autentifikacija (Google Authenticator/YubiKey) na svim mjenjačnicama.</label>
         </div>
         <div class="item">
-            <input type="checkbox" id="step4">
-            <label for="step4">SMS 2FA je isključen gdje god je to moguće (zaštita od SIM swap napada).</label>
+            <input type="checkbox" id="step4" onchange="updateProgress()">
+            <label for="label4" id="label4">SMS 2FA je isključen gdje god je to moguće (zaštita od SIM swap napada).</label>
         </div>
         <div class="item">
-            <input type="checkbox" id="step5">
-            <label for="step5">Korištenje odvojenog i sigurnog e-maila samo za kripto račune.</label>
+            <input type="checkbox" id="step5" onchange="updateProgress()">
+            <label for="label5" id="label5">Korištenje odvojenog i sigurnog e-maila samo za kripto račune.</label>
         </div>
     </div>
+
+    <script>
+        const totalSteps = 5;
+
+        function updateProgress() {
+            let checkedCount = 0;
+            for (let i = 1; i <= totalSteps; i++) {
+                const checkbox = document.getElementById('step' + i);
+                const label = document.getElementById('label' + i);
+                
+                if (checkbox.checked) {
+                    checkedCount++;
+                    label.classList.add('completed');
+                    localStorage.setItem('step' + i, 'true');
+                } else {
+                    label.classList.remove('completed');
+                    localStorage.setItem('step' + i, 'false');
+                }
+            }
+
+            const percentage = Math.round((checkedCount / totalSteps) * 100);
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressText').innerText = 'Napredak: ' + percentage + '% (' + checkedCount + '/' + totalSteps + ')';
+        }
+
+        // Učitavanje spremljenog stanja pri otvaranju stranice
+        window.onload = function() {
+            for (let i = 1; i <= totalSteps; i++) {
+                const savedState = localStorage.getItem('step' + i);
+                if (savedState === 'true') {
+                    document.getElementById('step' + i).checked = true;
+                }
+            }
+            updateProgress();
+        }
+    </script>
 
 </body>
 </html>
