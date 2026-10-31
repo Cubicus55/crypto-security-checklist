@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Security Checklist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        h1 {
+            color: #1a252f;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .checklist {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .item:last-child {
+            border-bottom: none;
+        }
+        .item input {
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .item label {
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Crypto Security Checklist</h1>
+    <p class="subtitle">Osnovna provjera sigurnosti za svakog kripto korisnika</p>
+
+    <div class="checklist">
+        <div class="item">
+            <input type="checkbox" id="step1">
+            <label for="step1">Hardware novčanik je kupljen isključivo od službenog proizvođača.</label>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="step2">
+            <label for="step2">Seed fraza (24 riječi) zapisana je na papir/metal, nikada u digitalnom obliku.</label>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="step3">
+            <label for="step3">Uključena je 2FA autentifikacija (Google Authenticator/YubiKey) na svim mjenjačnicama.</label>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="step4">
+            <label for="step4">SMS 2FA je isključen gdje god je to moguće (zaštita od SIM swap napada).</label>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="step5">
+            <label for="step5">Korištenje odvojenog i sigurnog e-maila samo za kripto račune.</label>
+        </div>
+    </div>
+
+</body>
+</html>
